@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage          = 'https://github.com/cerupcat/MAImagePickerController-of-InstaPDF'
   s.author            = { 'Maximilian Mackh' => '' }
   s.source            = { :git => 'https://github.com/cerupcat/MAImagePickerController-of-InstaPDF.git', :tag => '0.0.1' }
-  s.source_files      = 'MAImagePickerController/*.{h,m,png}', 'MAImagePickerController/assets/*.{h,m}'
+  s.source_files      = 'MAImagePickerController/*.{h,m,png}', 'MAImagePickerController/assets/*.{png}'
   s.frameworks        = 'CoreGraphics', 'UIKit', 'CoreImage', 'QuartzCore', 'ImageIO', 'CoreMedia', 'AVFoundation', 'MediaPlayer'
   s.license           = { :type => 'MIT' }
   s.requires_arc = true
