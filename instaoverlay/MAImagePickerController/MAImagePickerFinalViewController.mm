@@ -270,8 +270,7 @@
         [_thirdSettingIcon setEnabled:YES];
         [_fourthSettingIcon setEnabled:YES];
         
-        int activityIndicatorOffset;
-        
+        int activityIndicatorOffset = 0;
         
         switch (control.tag) {
             case 1:

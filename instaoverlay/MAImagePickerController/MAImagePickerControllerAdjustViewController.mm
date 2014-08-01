@@ -133,11 +133,11 @@
         int min = [[points valueForKeyPath:@"@min.value"] intValue];
         int max = [[points valueForKeyPath:@"@max.value"] intValue];
         
-        int minIndex;
-        int maxIndex;
+        int minIndex = 0;
+        int maxIndex = 0;
         
-        int missingIndexOne;
-        int missingIndexTwo;
+        int missingIndexOne = 0;
+        int missingIndexTwo = 0;
         
         for (int i = 0; i < 4; i++)
         {

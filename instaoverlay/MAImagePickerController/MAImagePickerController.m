@@ -34,25 +34,22 @@
     [self.navigationController setNavigationBarHidden:YES];
     [self.view setBackgroundColor:[UIColor blackColor]];
     
-    
-    
     if (_sourceType == MAImagePickerControllerSourceTypeCamera && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(MAImagePickerChosen:) name:@"MAIPCSuccessInternal" object:nil];
         
         [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillEnterForegroundNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification){
-            AudioSessionInitialize(NULL, NULL, NULL, NULL);
-            AudioSessionSetActive(YES);
+           
+           [[AVAudioSession sharedInstance] setActive:YES error:nil];
         }];
         
         [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationDidEnterBackgroundNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *notification)
          {
-             AudioSessionSetActive(NO);
+             [[AVAudioSession sharedInstance] setActive:NO error:nil];
          }];
         
-        
-        AudioSessionInitialize(NULL, NULL, NULL, NULL);
-        AudioSessionSetActive(YES);
+        //set session active
+        [[AVAudioSession sharedInstance] setActive:YES error:nil];
         
         // Volume View to hide System HUD
         _volumeView = [[MPVolumeView alloc] initWithFrame:CGRectMake(-100, 0, 10, 0)];
@@ -292,7 +289,7 @@
     if (_sourceType == MAImagePickerControllerSourceTypeCamera && [UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera])
     {
         [[_captureManager captureSession] stopRunning];
-        AudioSessionSetActive(NO);
+        [[AVAudioSession sharedInstance] setActive:NO error:nil];
     }
     else
     {
@@ -304,7 +301,7 @@
 
 - (void) MAImagePickerChosen:(NSNotification *)notification
 {
-    AudioSessionSetActive(NO);
+    [[AVAudioSession sharedInstance] setActive:NO error:nil];
     
     [self removeNotificationObservers];
     [_delegate imagePickerDidChooseImageWithPath:[notification object]];
@@ -312,7 +309,6 @@
 
 - (void)removeNotificationObservers
 {
-    
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
